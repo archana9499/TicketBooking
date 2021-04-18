@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +18,7 @@ public class UserController {
 	@Autowired
 	UserServices userServices;
 	
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value="/Login", method=RequestMethod.POST)
 	 public Map<String,Object> loginUser(@RequestBody User user) {
 		Map<String,Object> response=new HashMap<String,Object>();
@@ -45,7 +47,7 @@ public class UserController {
        return response;
       
  }
-	
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public Map<String,Object> registerUser(@RequestBody User user)
 	{
@@ -67,7 +69,7 @@ public class UserController {
 		
 	}
 	
-	
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value="/test")
 	public @ResponseBody List<User> test()
 	{

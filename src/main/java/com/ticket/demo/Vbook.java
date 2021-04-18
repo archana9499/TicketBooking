@@ -7,13 +7,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Vbook {
 	
 	@Id
-	private String id;
+	private int id;
 	private String name, trainId, sourceStation, destinationStation;
 	double fare;
-	public String getId() {
+	
+	
+	
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -46,7 +49,7 @@ public class Vbook {
 	public void setFare(double fare) {
 		this.fare = fare;
 	}
-	public Vbook(String id, String name, String trainId, String sourceStation, String destinationStation, double fare) {
+	public Vbook(int id, String name, String trainId, String sourceStation, String destinationStation, double fare) {
 		super();
 		this.id = id;
 		this.name = name;

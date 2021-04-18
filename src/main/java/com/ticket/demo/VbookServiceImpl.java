@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 
 @Repository
@@ -38,5 +39,51 @@ public class VbookServiceImpl implements VbookService {
 		return mongoTemplate.find(query,Vbook.class,COLLECTION);
 	}
 
+	
+	@Autowired
+	private RestTemplate template;
+	
+	@Override
+	public TransactionResponse saveOrder(TransactionRequest request) {
+		
+		String response = "";
+		Vbook order = request.getOrder();
+
+		BPayment payment = request.getPayment();
+		payment.setOrderId(order.getId());
+		payment.setAmount(order.getFare());
+		
+		//rest call
+		BPayment paymentResponse = template.postForObject("http://PAYMENT-SERVICE/savePayment",payment,BPayment.class);
+		
+		
+		response = paymentResponse.getPaymentStatus().equals("success")?"payment processing successful and order placed":"there is a failure in payment api, order cancelled";
+		
+		mongoTemplate.save(order);
+		return new TransactionResponse(order,paymentResponse.getAmount(),paymentResponse.getTransactionId(),response);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

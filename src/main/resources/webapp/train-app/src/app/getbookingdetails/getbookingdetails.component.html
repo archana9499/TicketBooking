@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="getbookingdetails.component.css">
+        <link rel="stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    </head>
+<body>
+    <div class="jumbotron signupform">
+        <div class="Signup">
+          <h1>Get Booking Details</h1>
+          
+      </div>
+      <form method="get">
+        <div class="form-group">
+          <label for="sourceStation">Source Station</label>
+          <input name="sourceStation" type="text" class="form-control" id="sourcestation" placeholder="Source station">
+        </div>
+        <div class="form-group">
+            <label for="destinationStation">Destination Station:</label>
+            <input name="destinationStation" type="text" class="form-control" id="destinationstation" placeholder="Destination station">
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input name="name" type="text" class="form-control" id="name" placeholder="name">
+          </div>
+          <div class="form-group">
+            <label for="trainId">Train Id</label>
+            <input name="trainId" type="text" class="form-control" id="trainid" placeholder="train id">
+          </div>
+          <div class="form-group">
+            <label for="fare">Fare</label>
+            <input name="fare" type="text" class="form-control" id="fare" placeholder="fare">
+            
+          </div>
+          
+          <div class="form-group">
+              <Button class="btn btn-success">Get Booking details</Button>
+          </div>
+       
+        </form>
+        
+    </div>
+
+    <!---my-->
+    <div class="generic-container">
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="row">
+            
+          </div>
+          <div class="panel-heading"><span class="lead">List of Booking</span>
+          </div>
+          <div class="tablecontainer">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Source Station</th>
+                <th>Destination Station</th>
+                <th>Name</th>
+                <th>Train Id</th>
+                <th>Fare</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let vbook of bookingdetails">
+                
+               
+                
+                <td><span>{{vbook.sourceStation}}</span></td>
+                <td><span>{{vbook.destinationStation}}</span></td>
+                <td><span>{{vbook.name}}</span></td>
+                <td><span>{{vbook.trainId}}</span></td>
+                <td><span>{{vbook.fare}}</span></td>
+                
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+</body>
+</html>

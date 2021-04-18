@@ -3,6 +3,8 @@ package com.ticket.demo;
 import java.util.List;
 
 public interface VbookService {
+	
+
 
 	public void create(Vbook vbook);
 	
@@ -10,5 +12,6 @@ public interface VbookService {
 	
 	public List<Vbook> find(String source,String dest,String name,String trainId,double fare);
 	
-	
+	public TransactionResponse saveOrder(TransactionRequest request);
+
 }

@@ -6,11 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.client.RestTemplate;
 
 
 @ComponentScan(basePackages="com.ticket.demo")
 @SpringBootApplication
+@EnableEurekaClient
 public class TrainresApplication implements CommandLineRunner {
 
 	@Autowired
@@ -60,7 +65,7 @@ public class TrainresApplication implements CommandLineRunner {
 		
 		
 		
-		Vbook v1= new Vbook("1","memo","1000","Pune", "Noida",250l);
+		Vbook v1= new Vbook(1,"memo","1000","Pune", "Noida",250l);
 		vbookRepository.save(v1);
 		
 		System.out.println("*********");
@@ -73,6 +78,11 @@ public class TrainresApplication implements CommandLineRunner {
 		
 	}
 	
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 	
 	
 	
