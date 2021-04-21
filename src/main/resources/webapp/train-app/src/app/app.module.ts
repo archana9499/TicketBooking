@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import{FormsModule} from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
@@ -16,10 +17,13 @@ import { UpdatetrainComponent } from './updatetrain/updatetrain.component';
 import { BookorderComponent } from './bookorder/bookorder.component';
 import { GetbookingdetailsComponent } from './getbookingdetails/getbookingdetails.component';
 import { SavepaymentComponent } from './savepayment/savepayment.component';
-import { SavepaymentorderidComponent } from './savepaymentorderid/savepaymentorderid.component';
+
 import { AdminComponent } from './admin/admin.component';
 import { AdminoptionComponent } from './adminoption/adminoption.component';
-import { UseroptionComponent } from './useroption/useroption.component'
+import { UseroptionComponent } from './useroption/useroption.component';
+import { HomeComponent } from './home/home.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component'
 
 @NgModule({
   declarations: [
@@ -35,17 +39,21 @@ import { UseroptionComponent } from './useroption/useroption.component'
     BookorderComponent,
     GetbookingdetailsComponent,
     SavepaymentComponent,
-    SavepaymentorderidComponent,
+   
     AdminComponent,
     AdminoptionComponent,
     UseroptionComponent,
+    HomeComponent,
+    AboutusComponent,
+    ContactusComponent,
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+   
 
   ],
   providers: [],

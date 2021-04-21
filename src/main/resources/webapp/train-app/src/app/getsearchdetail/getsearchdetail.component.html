@@ -16,27 +16,27 @@
               <h1>Get search detail</h1>
               
           </div>
-          <form #getsearchform="ngForm" (ngSubmit)="getValues(getsearchform.value)">
+          <form #getsearchform="ngForm"  action="getsearchdetail" method="GET">
             <div class="form-group">
               <label for="sourceStation">Source Station</label>
-              <input ngModel name="sourceStation" type="text" class="form-control" id="sourcestation" placeholder="sourceStation">
+              <input  name="sourceStation" [(ngModel)]="sourceStation" type="text" class="form-control" id="sourcestation" placeholder="sourceStation">
             </div>
             <div class="form-group">
                 <label for="destinationStation">Destination Station</label>
-                <input ngModel name="destinationStation" type="text" class="form-control" id="destinationstation" placeholder="DestinationStation">
+                <input  name="destinationStation" [(ngModel)]="destinationStation" type="text" class="form-control" id="destinationstation" placeholder="DestinationStation">
               </div>
               <div class="form-group">
                 <label for="type">Type:</label>
-                <input ngModel name="Traintype" type="text" class="form-control" id="type" placeholder="Traintype">
+                <input  name="trainType" [(ngModel)]="trainType" type="text" class="form-control" id="type" placeholder="Traintype">
               </div>
               <div class="form-group">
                 <label for="day">Day:</label>
-                <input ngModel name="day" type="text" class="form-control" id="day" placeholder="Day">
+                <input  name="day" [(ngModel)]="day" type="text" class="form-control" id="day" placeholder="Day">
               </div>
               
               
               <div class="form-group">
-                  <Button class="btn btn-success">Search</Button>
+                  <Button (click)="fn()" class="btn btn-success">Search</Button>
               </div>
            
             </form>
@@ -57,23 +57,29 @@
               <table class="table table-hover">
                 <thead>
                 <tr>
+                  <th>Name</th>
+                  <th>Train Number</th>
                   <th>Source Station</th>
                   <th>Destination Station</th>
                   
                   <th>Train type</th>
                   <th>Day</th>
+                  
+                  
   
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let train of searchdetail">
+                <tr *ngFor="let train of trains.list">
                   
                  
-                  
+                  <td><span>{{train.name}}</span></td>
+                  <td><span>{{train.trainId}}</span></td>
                   <td><span>{{train.sourceStation}}</span></td>
                   <td><span>{{train.destinationStation}}</span></td>
                   <td><span>{{train.type}}</span></td>
-                  <td><span>{{train.day}}</span></td>
+                  <td><span>{{train.days}}</span></td>
+                
                   
                   
                 </tr>

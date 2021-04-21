@@ -35,7 +35,13 @@ public class TrainServiceImpl implements TrainService {
 		Query query = new Query(Criteria.where("sourceStation").regex(source,"i").and("destinationStation").regex(dest,"i").and("days").is(day));
 		return mongoTemplate.find(query,Train.class,COLLECTION);
 	}
-
+	@Override
+	public List<Train> findtest(String source) {
+		
+		Query mquery = new Query(Criteria.where("sourceStation").regex(source,"i"));
+		return mongoTemplate.find(mquery,Train.class,COLLECTION);
+	}
+	
 	@Override
 	public List<Train> findAll() {
 		

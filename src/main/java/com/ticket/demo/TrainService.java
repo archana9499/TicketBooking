@@ -10,8 +10,9 @@ public interface TrainService {
 	
 	public List<Train> find(String source,String dest,int day,String type);
 	
-	public List<Train> findAll();
+	public List<Train> findtest(String source);
 	
+	public List<Train> findAll();
 	
 	
 }

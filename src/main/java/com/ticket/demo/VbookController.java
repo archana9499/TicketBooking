@@ -26,7 +26,7 @@ public class VbookController {
 	VbookService vbookService;
 
 	
-	@CrossOrigin(origins="http://localhost:4200/getbookingdetails")
+	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "/getbookingdetails", method = RequestMethod.GET)
 	public Map<String, Object> getsearchdetails(@RequestParam("sourceStation") String sourceStation,
 			@RequestParam("destinationStation") String destinationStation,

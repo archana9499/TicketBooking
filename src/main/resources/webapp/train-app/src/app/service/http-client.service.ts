@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpParams } from '@angular/common/http';
+/*import { HttpClient, HttpParams } from '@angular/common/http';*/
+import{HttpClient, HttpHeaders} from '@angular/common/http';
 
 export class Train {
   constructor(
@@ -9,13 +10,13 @@ export class Train {
     public  trainId: string,
     public  sourceStation: string,
     public  destinationStation: string,
-    public  type: string,
+    public  trainType: string,
     public  fare: string,
     public  distance: string,
     public  seats: string,
     public  arrives: string,
     public  departs: string,
-    public  days: string,
+    public  day: string,
   ) {
   }
 }
@@ -28,26 +29,88 @@ export class Train {
 export class HttpClientService{
 
   constructor(
-    private httpClient: HttpClient
+    private http: HttpClient
   ) { }
 
  
 
+public getsearchtrain(sourceStation:any,destinationStation:any,trainType:any,day:any){
+  let url="'http://localhost:8080/getsearchdetails?sourceStation='+sourceStation+'&destinationStation='+destinationStation+'&trainType='+trainType+'&day='+day'";
+ console.log(url);
+  return this.http.get('http://localhost:8080/getsearchdetails?sourceStation='+sourceStation+'&destinationStation='+destinationStation+'&trainType='+trainType+'&day='+day);
+}
+
 getsearchdetail(){
-  console.log('Test Call');
-  return this.httpClient.get<any>('http://localhost:8080/getsearchdetails');
+ console.log('Test Call');
+  return this.http.get<any>('http://localhost:8080/getsearchdetails');
 }
 
 getProducts(){
   console.log('Test Call');
-  return this.httpClient.get<Train[]>('http://localhost:8080/gettrains');
+  return this.http.get<Train[]>('http://localhost:8080/gettrains');
 }
 
-getAddtrain(){
-  console.log('Test Call');
-  return this.httpClient.post<any>('http://localhost:8080/gettrains');
-}
+add(traininfo:any){
+  const headers ={
+    'content-type':'application/json'
+  
+  }
+  const body = JSON.stringify(traininfo);
+  console.log(body);
+  return this.http.post('http://localhost:8080/addtrain',body,{'headers':headers});
+  
+  }
 
+  book(traininfo:any){
+    const headers ={
+      'content-type':'application/json'
+    
+    }
+    const body = JSON.stringify(traininfo);
+    console.log(body);
+    return this.http.post('http://localhost:8080/book',body,{'headers':headers});
+    
+    }
+
+    savepay(traininfo:any){
+      const headers ={
+        'content-type':'application/json'
+      
+      }
+      const body = JSON.stringify(traininfo);
+      console.log(body);
+      return this.http.post('http://localhost:8081/savePayment',body,{'headers':headers});
+      
+      }
+
+  checkLogin(traininfo:any){
+    const headers ={
+      'content-type':'application/json'
+    
+    }
+    const body = JSON.stringify(traininfo);
+    console.log(body);
+    return this.http.post('http://localhost:8080/Login',body,{'headers':headers});
+    
+    }
+
+    signUp(traininfo:any){
+      const headers ={
+        'content-type':'application/json'
+      
+      }
+      const body = JSON.stringify(traininfo);
+    console.log(body);
+    return this.http.post('http://localhost:8080/register',body,{'headers':headers});
+    
+    }
+
+  public getbooktrain(sourceStation:any,destinationStation:any,name:any,trainId:any,fare:any){
+    let url="'http://localhost:8080/getbookingdetails?sourceStation='+sourceStation+'&destinationStation='+destinationStation+'&name='+name+'&trainId='+trainId+'&fare='+fare'";
+   console.log(url);
+    return this.http.get('http://localhost:8080/getbookingdetails?sourceStation='+sourceStation+'&destinationStation='+destinationStation+'&name='+name+'&trainId='+trainId+'&fare='+fare);
+  }
+  
 
 
 

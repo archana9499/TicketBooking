@@ -63,20 +63,24 @@ public class TrainController {
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@RequestMapping(value = "/getsearchdetails", method = RequestMethod.GET)
-	public Map<String, Object> getsearchdetails(@RequestParam("sourceStation") String sourceStation,
-			@RequestParam("destinationStation") String destinationStation,
+	public Map<String, Object> getsearchdetails(@RequestParam("sourceStation") String sourceStation, @RequestParam("destinationStation") String destinationStation,
 
-			@RequestParam("trainType") String trainType, @RequestParam("day") int day) {
+			@RequestParam("trainType") String type,
+			@RequestParam("day") int day)  
+			 {
 		Map<String, Object> response = new HashMap<String, Object>();
 		try {
 
 			response.put("message", "Search successful!");
-			response.put("list", trainService.find(sourceStation, destinationStation, day, trainType));
+			response.put("list", trainService.find(sourceStation, destinationStation, day, type));
+			
 		} catch (Exception e) {
 			response.put("message", "Error" + e.toString());
 		}
 
+		System.out.println(response);
 		return response;
+		
 
 	}
 	
